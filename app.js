@@ -142,6 +142,14 @@ async function updateConversion() {
     return;
   }
 
+  if (base === target) {
+    conversionResult.textContent = formatMoney(amount, target);
+    currentRate.textContent = `1 ${base} = 1.0000 ${target}`;
+    lastUpdated.textContent = "No conversion needed";
+    setStatus("Both currencies are the same.");
+    return;
+  }
+
   setStatus("Fetching the latest rate...");
 
   try {
